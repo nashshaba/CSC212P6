@@ -3,7 +3,7 @@ package edu.smith.cs.csc212.p6;
 import edu.smith.cs.csc212.p6.errors.P6NotImplemented;
 
 public class GrowableList<T> implements P6List<T> {
-	public static final int START_SIZE = 32;
+	public static final int START_SIZE = 32; //you can change this to 4 or smaller value to test
 	private Object[] array;
 	private int fill;
 	
