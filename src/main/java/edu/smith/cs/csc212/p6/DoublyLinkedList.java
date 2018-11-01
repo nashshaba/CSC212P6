@@ -1,5 +1,6 @@
 package edu.smith.cs.csc212.p6;
 
+import edu.smith.cs.csc212.p6.SinglyLinkedList.Node;
 import edu.smith.cs.csc212.p6.errors.EmptyListError;
 import edu.smith.cs.csc212.p6.errors.P6NotImplemented;
 
@@ -69,7 +70,13 @@ public class DoublyLinkedList<T> implements P6List<T> {
 
 	@Override
 	public int size() {
-		throw new P6NotImplemented();
+		int counter=0;
+		for (Node<T> n = this.start; n != null; n = n.after) {
+			counter++;
+		}
+		return counter;
+	
+		
 	}
 
 	@Override

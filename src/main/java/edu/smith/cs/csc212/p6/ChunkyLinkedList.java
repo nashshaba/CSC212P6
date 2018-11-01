@@ -43,6 +43,15 @@ public class ChunkyLinkedList<T> implements P6List<T> {
 
 	@Override
 	public void addBack(T item) {
+//		if (this.isEmpty()) {
+//			chunks.start= new Node<FixedSizeList<T>>(new FixedSizeList<T>(chunkSize),null);
+//			
+//		}else if {
+//			
+//		}
+//		else {
+//			
+//		}
 		throw new P6NotImplemented();
 	}
 

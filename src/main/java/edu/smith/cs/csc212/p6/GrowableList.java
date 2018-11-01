@@ -1,11 +1,10 @@
 package edu.smith.cs.csc212.p6;
 
 import edu.smith.cs.csc212.p6.errors.EmptyListError;
-import edu.smith.cs.csc212.p6.errors.P6NotImplemented;
-import edu.smith.cs.csc212.p6.errors.RanOutOfSpaceError;
+
 
 public class GrowableList<T> implements P6List<T> {
-	public static final int START_SIZE = 32; //you can change this to 4 or smaller value to test
+	public static int START_SIZE = 4; //you can change this to 4 or smaller value to test
 	private Object[] array;
 	private int fill;
 	
@@ -59,12 +58,15 @@ public class GrowableList<T> implements P6List<T> {
 		if (fill >= this.array.length) { 
 			addIndex(item,-1);
 		}
+		
 		this.array[fill++] = item;
 	}
 
 	@Override
 	public void addIndex(T item, int index) {
 		if (fill >= array.length) {
+			System.out.println(fill);
+			System.out.println(array.length);
 			addIndex(item,index);
 		}
 		// loop backwards, shifting items to the right.
