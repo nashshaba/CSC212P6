@@ -3,14 +3,20 @@ package edu.smith.cs.csc212.p6;
 import org.junit.Test;
 
 import edu.smith.cs.csc212.p6.errors.EmptyListError;
+import edu.smith.cs.csc212.p6.errors.RanOutOfSpaceError;
+
+
+
 
 
 import org.junit.Assert;
 
-public class SinglyLinkedListTest {
+public class ChunkyLinkedListTest {
+	
+	public static int num=4;
 	@Test
 	public void testEmpty() {
-		P6List<String> data = new SinglyLinkedList<String>();
+		P6List<String> data = new ChunkyLinkedList<String>(num);
 		Assert.assertEquals(0, data.size());
 		data = new SinglyLinkedList<String>();
 		Assert.assertEquals(0, data.size());
@@ -18,25 +24,25 @@ public class SinglyLinkedListTest {
 	
 	@Test(expected=EmptyListError.class)
 	public void testRemoveFrontCrash() {
-		P6List<String> data = new SinglyLinkedList<String>();
+		P6List<String> data = new ChunkyLinkedList<String>(num);
 		data.removeFront();
 	}
 	
 	@Test(expected=EmptyListError.class)
 	public void testRemoveBackCrash() {
-		P6List<String> data = new SinglyLinkedList<String>();
+		P6List<String> data = new ChunkyLinkedList<String>(num);
 		data.removeBack();
 	}
 	
 	@Test(expected=EmptyListError.class)
 	public void testRemoveIndexCrash() {
-		P6List<String> data = new SinglyLinkedList<String>();
+		P6List<String> data = new ChunkyLinkedList<String>(num);
 		data.removeIndex(3);
 	}
 
 	@Test
 	public void testAddToFront() {
-		P6List<String> data = new SinglyLinkedList<String>();
+		P6List<String> data = new ChunkyLinkedList<String>(num);
 		data.addFront("1");
 		Assert.assertEquals(1, data.size());
 		Assert.assertEquals("1", data.getIndex(0));
@@ -58,7 +64,7 @@ public class SinglyLinkedListTest {
 	
 	@Test
 	public void testAddToBack() {
-		P6List<String> data = new SinglyLinkedList<String>();
+		P6List<String> data = new ChunkyLinkedList<String>(num);
 		data.addBack("1");
 		Assert.assertEquals(1, data.size());
 		Assert.assertEquals("1", data.getIndex(0));
@@ -80,7 +86,7 @@ public class SinglyLinkedListTest {
 	
 	@Test
 	public void testAddToIndex() {
-		P6List<String> data = new SinglyLinkedList<String>();
+		P6List<String> data = new ChunkyLinkedList<String>(num);
 		data.addIndex("1", 0);
 		Assert.assertEquals(1, data.size());
 		Assert.assertEquals("1", data.getIndex(0));
@@ -105,7 +111,7 @@ public class SinglyLinkedListTest {
 	 * @return
 	 */
 	public P6List<String> makeFullList() {
-		P6List<String> data = new SinglyLinkedList<String>();
+		P6List<String> data = new ChunkyLinkedList<String>(num);
 		data.addBack("a");
 		data.addBack("b");
 		data.addBack("c");
@@ -113,20 +119,20 @@ public class SinglyLinkedListTest {
 		return data;
 	}
 	
-//	@Test
+//	@Test (expected=RanOutOfSpaceError.class)
 //	public void testAddBackFull() {
 //		makeFullList().addBack("no space");
 //	}
 //	
-//	@Test
+//	@Test (expected=RanOutOfSpaceError.class)
 //	public void testAddFrontFull() {
 //		makeFullList().addFront("no space");
 //	}
-//	
-//	@Test
-//	public void testAddIndexFull() {
-//		makeFullList().addIndex("no space",2 );
-//	}
+	
+	@Test (expected=RanOutOfSpaceError.class)
+	public void testAddIndexFull() {
+		makeFullList().addIndex("no space",2 );
+	}
 	
 	@Test
 	public void testRemoveFront() {
@@ -158,13 +164,10 @@ public class SinglyLinkedListTest {
 	@Test
 	public void testRemoveIndex() {
 		P6List<String> data = makeFullList();
-		
 		Assert.assertEquals(4, data.size());
 		Assert.assertEquals("c", data.removeIndex(2));
-		//System.out.println(data.getIndex(2));
 		Assert.assertEquals(3, data.size());
 		Assert.assertEquals("d", data.removeIndex(2));
-		
 		Assert.assertEquals(2, data.size());
 		Assert.assertEquals("b", data.removeIndex(1));
 		Assert.assertEquals(1, data.size());

@@ -2,6 +2,7 @@ package edu.smith.cs.csc212.p6;
 
 import org.junit.Test;
 
+
 import edu.smith.cs.csc212.p6.errors.EmptyListError;
 
 
@@ -94,20 +95,7 @@ public class GrowableListTest {
 		return data;
 	}
 	
-//	@Test
-//	public void testAddBackFull() {
-//		makeFullList().addBack("no space");
-//	}
-//	
-//	@Test
-//	public void testAddFrontFull() {
-//		makeFullList().addFront("no space");
-//	}
-//	
-//	@Test
-//	public void testAddIndexFull() {
-//		makeFullList().addIndex("no space",2);
-//	}
+
 	
 	@Test
 	public void testRemoveFront() {
